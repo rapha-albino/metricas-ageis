@@ -10,6 +10,7 @@ test("navigation reaches every section", async ({ page }) => {
     await page.getByRole("link", { name, exact: true }).click();
     await expect(page).toHaveURL(new RegExp(`#${id}$`));
     await expect(page.locator(`#${id}`)).toBeVisible();
+    await expect(page.getByRole("link", { name, exact: true })).toHaveAttribute("aria-current", "location");
   }
 });
 
@@ -48,6 +49,7 @@ test("the three follow-on articles render with calculated reading time", async (
     await page.goto(path);
     await expect(page.getByRole("heading", { level: 1, name: heading })).toBeVisible();
     await expect(page.locator(".article-meta")).toContainText(/min de leitura/);
+    await expect(page.getByRole("link", { name: "O que mudou", exact: true })).toHaveAttribute("aria-current", "location");
   }
   await page.getByRole("link", { name: "← Voltar ao livro" }).click();
   await expect(page).toHaveURL(/\/#atualizacao$/);

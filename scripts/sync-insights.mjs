@@ -2,7 +2,7 @@ import { access, mkdir, writeFile } from "node:fs/promises";
 import { constants } from "node:fs";
 import { dirname, resolve } from "node:path";
 
-const revision = "12c85b5";
+const revision = "8bec84f31c5237185d539a5201acbfbc13c1a1c1";
 const articles = [
   "metricas/metricas-de-fluxo.md",
   "metricas/indicadores-de-negocio.md",
