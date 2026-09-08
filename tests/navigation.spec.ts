@@ -13,6 +13,14 @@ test("navigation reaches every section", async ({ page }) => {
   }
 });
 
+test("reader voices present attributed application and critical readings", async ({ page }) => {
+  await page.goto("/");
+  const voices = page.locator(".reader-voice");
+  await expect(voices).toHaveCount(4);
+  await expect(voices.filter({ hasText: "Edson Jesus" })).toContainText("Auditoria de TI");
+  await expect(voices.filter({ hasText: "Pablo Silva" })).toContainText("Leitura crítica");
+});
+
 test("book and course have distinct official destinations", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator(`a[href="${purchaseUrl}"]`).first()).toHaveAttribute("target", "_blank");
