@@ -141,9 +141,9 @@ O artigo deve ter data de publicação, tempo estimado de leitura apenas se calc
 
 ### Vozes de leitura
 
-Os quatro relatos indicados no mapa editorial só entram após confirmação do texto, autoria, origem e possibilidade de reprodução fora das plataformas. Incluir uma leitura que faça ressalva preserva a credibilidade da curadoria.
+A curadoria inicial foi publicada com quatro leituras do Goodreads: Edson Jesus, Gabriel Machado, Jean Streleski e Pablo Silva. As três primeiras preservam trechos curtos atribuídos; a entrada de Pablo é explicitamente apresentada como síntese crítica, não como citação. Incluir uma ressalva preserva a credibilidade da curadoria.
 
-Não afirmar a média, o número de avaliações ou avaliações da Amazon sem reconferir a fonte no momento da publicação.
+A média de 4,55 em 81 avaliações foi transcrita da coleta editorial já realizada. Não incluir avaliações da Amazon sem reconferir a fonte e as condições de reprodução.
 
 ## Stack
 
@@ -232,8 +232,7 @@ Os arquivos do livro em `../livro/` permanecem fora do site. Os artigos vivem no
 ## Ordem de construção
 
 1. Fazer leitura autoral em dispositivos reais e revisar a compactação do aviso de consentimento na primeira visita.
-2. Inserir vozes de leitura somente depois de conferência editorial e de autorização de uso.
-3. Configurar a prévia e produção na Vercel e conectar <https://metricasageis.com.br>.
+2. Configurar a prévia e produção na Vercel e conectar <https://metricasageis.com.br>.
 
 O repositório, o projeto Astro, a identidade visual, o artigo, os SVGs, a imagem social 1200 × 630, o favicon, o consentimento, a privacidade, os testes e o workflow de CI estão implementados.
 
