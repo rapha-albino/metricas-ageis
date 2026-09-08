@@ -16,6 +16,6 @@ npm run build
 npm run test:e2e
 ```
 
-Defina `SITE_URL` no ambiente de deploy depois de confirmar o domínio público. Isso ativa URLs canônicas e sitemap.
+O domínio público é <https://metricasageis.com.br>. URLs canônicas e sitemap são gerados no build.
 
 As fontes do livro ficam em `../livro/`. O artigo inicial é adaptado de `../../fluxo/metricas-de-fluxo.md`.

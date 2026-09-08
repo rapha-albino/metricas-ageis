@@ -70,14 +70,17 @@ for (const path of ["/", "/artigos/metricas-de-fluxo/", "/privacidade/"]) {
   });
 }
 
-test("the home page provides icon, social image, and vector charts", async ({ page }) => {
+test("the home page provides icon, social image, vector charts, and canonical metadata", async ({ page }) => {
   await page.goto("/");
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://metricasageis.com.br/");
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", "https://metricasageis.com.br/images/og-metricas-ageis.png");
   await expect(page.locator('link[rel="icon"][href="/favicon.svg"]')).toHaveCount(1);
   await expect(page.locator('img[src="/images/cfd-fluxo.svg"]')).toHaveCount(1);
   await expect(page.locator('img[src="/images/histograma-lead-time.svg"]')).toHaveCount(1);
   await expect(page.locator('img[src="/images/burnup.svg"]')).toHaveCount(1);
   const socialImage = await page.request.get("/images/og-metricas-ageis.png");
   expect(socialImage.ok()).toBe(true);
+  await expect(page.locator(".course-price")).toContainText("R$ 197 /mês");
 });
 
 test("unknown routes offer a path home", async ({ page }) => {

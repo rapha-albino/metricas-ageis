@@ -180,7 +180,7 @@ O CTA do curso aponta para a página do produto **Métricas para Agilidade Organ
 
 <https://softwarezen.me/ecossistema/produto/metricas/>
 
-O texto-base do CTA será **Conhecer o curso**. Antes do desenvolvimento, falta apenas decidir se o preço aparece no site ou somente no destino.
+O texto-base do CTA será **Conhecer o curso**. O preço aparece na seção: **R$ 197/mês**.
 
 ### Compra do livro
 
@@ -192,7 +192,7 @@ Confirmar, na revisão pré-publicação, os formatos efetivamente disponíveis 
 
 ### Domínio
 
-Definir domínio, titularidade e hospedagem antes do deploy público. Até a decisão, a Vercel pode hospedar somente prévias de revisão.
+Domínio público definido: <https://metricasageis.com.br>. O build já gera URL canônica, Open Graph absoluto e sitemap para esse domínio. Falta conectar o domínio à hospedagem na Vercel.
 
 ### Analytics e privacidade
 
@@ -233,10 +233,9 @@ Os arquivos do livro permanecem fora de `site/` como fonte editorial. Cópias ad
 
 ## Ordem de construção
 
-1. Confirmar domínio e definir `SITE_URL` no deploy para ativar canonical, Open Graph absoluto e sitemap.
-2. Fazer leitura autoral em dispositivos reais e revisar a compactação do aviso de consentimento na primeira visita.
-3. Inserir vozes de leitura somente depois de conferência editorial e de autorização de uso.
-4. Configurar a prévia e produção na Vercel.
+1. Fazer leitura autoral em dispositivos reais e revisar a compactação do aviso de consentimento na primeira visita.
+2. Inserir vozes de leitura somente depois de conferência editorial e de autorização de uso.
+3. Configurar a prévia e produção na Vercel e conectar <https://metricasageis.com.br>.
 
 O repositório, o projeto Astro, a identidade visual, o artigo, os SVGs, a imagem social 1200 × 630, o favicon, o consentimento, a privacidade, os testes e o workflow de CI estão implementados.
 
@@ -255,8 +254,5 @@ O repositório, o projeto Astro, a identidade visual, o artigo, os SVGs, a image
 
 ## Decisões que precisam de resposta antes da implementação
 
-1. Qual será o domínio público?
-2. O preço do curso aparece no site ou apenas no destino?
-3. As quatro resenhas do Goodreads estão liberadas para reprodução com atribuição? Quais são seus textos finais?
-4. Qual é a data editorial de publicação do artigo de métricas de fluxo?
-5. Os artigos sobre indicadores de negócio e Accelerate ficam no backlog, como proposto?
+1. As quatro resenhas do Goodreads estão liberadas para reprodução com atribuição? Quais são seus textos finais?
+2. Os artigos sobre indicadores de negócio e Accelerate ficam no backlog, como proposto?

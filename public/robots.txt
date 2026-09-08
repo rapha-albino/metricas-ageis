@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://metricasageis.com.br/sitemap-index.xml
