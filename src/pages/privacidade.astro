@@ -1,0 +1,16 @@
+---
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import "../styles/global.css";
+---
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><meta name="description" content="Informações sobre privacidade e métricas de navegação no site Métricas Ágeis." /><meta name="robots" content="index,follow" /><title>Privacidade — Métricas Ágeis</title></head>
+<body><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><SiteHeader />
+<main id="conteudo" class="privacy article" tabindex="-1"><p class="eyebrow">Privacidade</p><h1>Informações sobre dados e navegação</h1>
+<p>Este site existe para apresentar o livro <em>Métricas Ágeis</em> e seus conteúdos derivados. Não há cadastro, comentários ou formulários próprios nesta versão.</p>
+<h2>Métricas de navegação</h2><p>Com seu consentimento, o site usa o Google Analytics, identificado pela propriedade <code>G-61LGNYRFLH</code>, para compreender visitas e interações de forma agregada. Essa informação ajuda a melhorar o conteúdo e a experiência de leitura.</p><p>O Google Analytics só é carregado depois que você escolhe aceitar no aviso de privacidade. Se você recusar, o conteúdo continua disponível e a ferramenta não é carregada.</p>
+<h2>Seus controles</h2><p>Você pode mudar sua escolha a qualquer momento.</p><button class="consent-reject" type="button" data-open-preferences>Rever preferências de métricas</button>
+<h2>Links externos</h2><p>Os links para Casa do Código e Software Zen levam a sites de terceiros, sujeitos às suas próprias políticas de privacidade.</p>
+<h2>Atualizações</h2><p>Esta página será atualizada se as práticas de dados do site mudarem.</p></main><SiteFooter />
+<script>document.querySelector("[data-open-preferences]")?.addEventListener("click", () => document.dispatchEvent(new CustomEvent("analytics-preferences")));</script>
+</body></html>

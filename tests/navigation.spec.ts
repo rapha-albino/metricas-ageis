@@ -20,6 +20,21 @@ test("book and course have distinct official destinations", async ({ page }) => 
   expect(purchaseUrl).not.toBe(courseUrl);
 });
 
+test("analytics loads only after the visitor accepts it", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByRole("complementary", { name: "Preferências de privacidade" })).toBeVisible();
+  await expect(page.locator('script[src*="googletagmanager.com/gtag/js"]')).toHaveCount(0);
+  await page.getByRole("button", { name: "Aceitar" }).click();
+  await expect(page.locator('script[src="https://www.googletagmanager.com/gtag/js?id=G-61LGNYRFLH"]')).toHaveCount(1);
+});
+
+test("the privacy page explains analytics and lets visitors revisit consent", async ({ page }) => {
+  await page.goto("/privacidade/");
+  await expect(page.getByRole("heading", { name: "Informações sobre dados e navegação" })).toBeVisible();
+  await page.getByRole("button", { name: "Rever preferências de métricas" }).click();
+  await expect(page.getByRole("complementary", { name: "Preferências de privacidade" })).toBeVisible();
+});
+
 test("the flow article is available and returns to the book", async ({ page }) => {
   await page.goto("/artigos/metricas-de-fluxo/");
   await expect(page.getByRole("heading", { level: 1, name: /Métricas de fluxo/ })).toBeVisible();
@@ -46,7 +61,7 @@ test("skip link reaches content", async ({ page }) => {
   await expect(page.locator("main")).toBeFocused();
 });
 
-for (const path of ["/", "/artigos/metricas-de-fluxo/"]) {
+for (const path of ["/", "/artigos/metricas-de-fluxo/", "/privacidade/"]) {
   test(`${path} has no automatically detectable accessibility violations`, async ({ page }) => {
     await page.goto(path);
     const results = await new AxeBuilder({ page }).analyze();

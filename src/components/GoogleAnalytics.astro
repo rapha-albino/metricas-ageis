@@ -1,0 +1,51 @@
+---
+const measurementId = "G-61LGNYRFLH";
+---
+<aside class="consent-banner" data-consent-banner hidden aria-label="Preferências de privacidade">
+  <div>
+    <h2>Você aceita métricas de navegação?</h2>
+    <p>Com sua permissão, usamos o Google Analytics para entender como o site é usado e melhorá-lo. Você pode recusar sem perder acesso ao conteúdo.</p>
+    <a href="/privacidade/">Entenda como os dados são usados</a>
+  </div>
+  <div class="consent-actions">
+    <button class="consent-reject" type="button" data-consent-reject>Recusar</button>
+    <button class="consent-accept" type="button" data-consent-accept>Aceitar</button>
+  </div>
+</aside>
+
+<script define:vars={{ measurementId }}>
+  const storageKey = "metricas-ageis-analytics-consent";
+  const banner = document.querySelector("[data-consent-banner]");
+  const accept = document.querySelector("[data-consent-accept]");
+  const reject = document.querySelector("[data-consent-reject]");
+
+  const loadAnalytics = () => {
+    if (document.querySelector(`script[data-google-analytics="${measurementId}"]`)) return;
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+    script.dataset.googleAnalytics = measurementId;
+    document.head.appendChild(script);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", measurementId);
+  };
+
+  const setConsent = (value) => {
+    localStorage.setItem(storageKey, value);
+    banner?.setAttribute("hidden", "");
+    if (value === "accepted") loadAnalytics();
+  };
+
+  const consent = localStorage.getItem(storageKey);
+  if (consent === "accepted") loadAnalytics();
+  else if (!consent) banner?.removeAttribute("hidden");
+
+  accept?.addEventListener("click", () => setConsent("accepted"));
+  reject?.addEventListener("click", () => setConsent("rejected"));
+  document.addEventListener("analytics-preferences", () => {
+    banner?.removeAttribute("hidden");
+    accept?.focus();
+  });
+</script>
