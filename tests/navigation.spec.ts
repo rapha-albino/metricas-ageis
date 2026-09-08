@@ -42,7 +42,15 @@ test("analytics loads only after the visitor accepts it", async ({ page }) => {
   await expect(page.getByRole("complementary", { name: "Preferências de privacidade" })).toBeVisible();
   await expect(page.locator('script[src*="googletagmanager.com/gtag/js"]')).toHaveCount(0);
   await page.getByRole("button", { name: "Aceitar" }).click();
+  await expect(page.locator('[data-consent-banner]')).toBeHidden();
   await expect(page.locator('script[src="https://www.googletagmanager.com/gtag/js?id=G-61LGNYRFLH"]')).toHaveCount(1);
+});
+
+test("rejecting analytics hides the banner without loading Google Analytics", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Recusar" }).click();
+  await expect(page.locator('[data-consent-banner]')).toBeHidden();
+  await expect(page.locator('script[src*="googletagmanager.com/gtag/js"]')).toHaveCount(0);
 });
 
 test("the privacy page explains analytics and lets visitors revisit consent", async ({ page }) => {
