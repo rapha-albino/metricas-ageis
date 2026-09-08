@@ -35,9 +35,10 @@ test("the privacy page explains analytics and lets visitors revisit consent", as
   await expect(page.getByRole("complementary", { name: "Preferências de privacidade" })).toBeVisible();
 });
 
-test("the flow article is available and returns to the book", async ({ page }) => {
+test("the flow article is available, calculates reading time, and returns to the book", async ({ page }) => {
   await page.goto("/artigos/metricas-de-fluxo/");
   await expect(page.getByRole("heading", { level: 1, name: /Métricas de fluxo/ })).toBeVisible();
+  await expect(page.locator(".article-meta")).toContainText(/min de leitura/);
   await page.getByRole("link", { name: "← Voltar ao livro" }).click();
   await expect(page).toHaveURL(/\/#atualizacao$/);
 });
@@ -68,6 +69,16 @@ for (const path of ["/", "/artigos/metricas-de-fluxo/", "/privacidade/"]) {
     expect(results.violations).toEqual([]);
   });
 }
+
+test("the home page provides icon, social image, and vector charts", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator('link[rel="icon"][href="/favicon.svg"]')).toHaveCount(1);
+  await expect(page.locator('img[src="/images/cfd-fluxo.svg"]')).toHaveCount(1);
+  await expect(page.locator('img[src="/images/histograma-lead-time.svg"]')).toHaveCount(1);
+  await expect(page.locator('img[src="/images/burnup.svg"]')).toHaveCount(1);
+  const socialImage = await page.request.get("/images/og-metricas-ageis.png");
+  expect(socialImage.ok()).toBe(true);
+});
 
 test("unknown routes offer a path home", async ({ page }) => {
   await page.goto("/ausente");

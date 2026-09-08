@@ -129,7 +129,7 @@ Selecionar inicialmente três imagens originais, com função distinta:
 
 Cada gráfico precisa de título, texto alternativo significativo, legenda e uma explicação curta no HTML. A imagem não pode ser a única portadora de informação essencial. A seleção final depende de revisão de legibilidade em tela pequena.
 
-**Recomendação revista: redesenhar os três em SVG, preservando a escala de cinza — não a paleta de marca.** As imagens do livro são capturas de 2017 com resolução baixa para tela, mas sua escolha de cor está certa: cada gráfico distingue séries e valores por tom de cinza e por rótulo escrito diretamente sobre o dado, nunca por matiz. É o padrão indicado para leitura por pessoas com daltonismo, que dependem de contraste de valor e não de diferença de cor — trocar isso por turquesa, turquesa-profundo e limão seria uma regressão de acessibilidade disfarçada de modernização. Redesenhar em SVG inline resolve a resolução e a legibilidade em celular sem abrir mão dessa vantagem: usar `--tinta`, `--tinta-suave` e `--nevoa` para preencher e traçar as séries, do jeito que o livro já faz, com os mesmos rótulos diretos sobre o dado. O `--turquesa` fica reservado a um único destaque não essencial por gráfico, se fizer sentido, e nunca à diferenciação entre duas ou mais séries. As imagens originais permanecem como fonte de conferência, não como material publicado. É o item de maior esforço do MVP e ainda precisa de aprovação.
+**Implementado: três gráficos redesenhados em SVG, preservando a escala de cinza — não a paleta de marca.** As imagens do livro são capturas de 2017 com resolução baixa para tela, mas sua escolha de cor está certa: cada gráfico distingue séries e valores por tom de cinza e por rótulo escrito diretamente sobre o dado, nunca por matiz. É o padrão indicado para leitura por pessoas com daltonismo, que dependem de contraste de valor e não de diferença de cor — trocar isso por turquesa, turquesa-profundo e limão seria uma regressão de acessibilidade disfarçada de modernização. Os SVGs usam tinta, tinta suave, névoa e tons de cinza, com rótulos diretos sobre o dado. O `--turquesa` fica reservado a um único destaque não essencial por gráfico, se fizer sentido, e nunca à diferenciação entre duas ou mais séries. As imagens originais permanecem como fonte de conferência, não como material publicado.
 
 ### Artigo inicial
 
@@ -196,7 +196,7 @@ Definir domínio, titularidade e hospedagem antes do deploy público. Até a dec
 
 ### Analytics e privacidade
 
-O MVP pode começar sem analytics. Caso seja instalado, documentar a pergunta que ele responde, atualizar a política de privacidade e implementar consentimento LGPD antes de carregar ferramentas não essenciais.
+Google Analytics `G-61LGNYRFLH` está instalado para entender visitas e interações agregadas que ajudem a melhorar a experiência de leitura. Ele só é carregado após consentimento explícito. A página `/privacidade/` explica a prática e permite reabrir as preferências.
 
 ## Estrutura de conteúdo no projeto
 
@@ -204,18 +204,18 @@ O MVP pode começar sem analytics. Caso seja instalado, documentar a pergunta qu
 site/
 ├── public/
 │   ├── images/
-│   │   ├── capa-metricas-ageis.jpg
-│   │   ├── cfd.jpg
-│   │   ├── lead-time.jpg
-│   │   └── burnup.jpg
-│   ├── favicon.*
+│   │   ├── capa-livro.jpg
+│   │   ├── cfd-fluxo.svg
+│   │   ├── histograma-lead-time.svg
+│   │   ├── burnup.svg
+│   │   └── og-metricas-ageis.png
+│   ├── favicon.svg
 │   ├── robots.txt
 │   └── sitemap-index.xml             # gerado no build
 ├── src/
 │   ├── components/
 │   ├── content/
-│   │   ├── artigos/
-│   │   └── site/
+│   │   └── artigos/
 │   ├── layouts/
 │   ├── pages/
 │   │   ├── artigos/
@@ -233,15 +233,12 @@ Os arquivos do livro permanecem fora de `site/` como fonte editorial. Cópias ad
 
 ## Ordem de construção
 
-1. Confirmar domínio; selecionar os três gráficos e revisar sua legibilidade.
-2. Criar repositório e projeto Astro a partir dos padrões técnicos de *Antes de Mim*.
-3. Implementar identidade visual, cabeçalho responsivo, abertura e as seções problema/livro.
-4. Criar o layout de artigo e publicar o texto de métricas de fluxo revisado.
-5. Implementar atualização desde 2017, curso, compra e rodapé.
-6. Inserir vozes de leitura somente depois de conferência editorial e de uso.
-7. Criar imagem social horizontal 1200 × 630 e configurar SEO técnico: title, description, canonical, Open Graph, Twitter Card, JSON-LD de `Book` e `Article`, sitemap e `robots.txt`.
-8. Criar testes de navegação, responsividade, acessibilidade com Axe e metadados; validar build e prévia na Vercel.
-9. Fazer leitura autoral em dispositivos reais, conectar domínio e publicar.
+1. Confirmar domínio e definir `SITE_URL` no deploy para ativar canonical, Open Graph absoluto e sitemap.
+2. Fazer leitura autoral em dispositivos reais e revisar a compactação do aviso de consentimento na primeira visita.
+3. Inserir vozes de leitura somente depois de conferência editorial e de autorização de uso.
+4. Configurar a prévia e produção na Vercel.
+
+O repositório, o projeto Astro, a identidade visual, o artigo, os SVGs, a imagem social 1200 × 630, o favicon, o consentimento, a privacidade, os testes e o workflow de CI estão implementados.
 
 ## Critérios de pronto para o MVP
 
@@ -261,5 +258,5 @@ Os arquivos do livro permanecem fora de `site/` como fonte editorial. Cópias ad
 1. Qual será o domínio público?
 2. O preço do curso aparece no site ou apenas no destino?
 3. As quatro resenhas do Goodreads estão liberadas para reprodução com atribuição? Quais são seus textos finais?
-4. Quais três gráficos passam na seleção de legibilidade para o site?
+4. Qual é a data editorial de publicação do artigo de métricas de fluxo?
 5. Os artigos sobre indicadores de negócio e Accelerate ficam no backlog, como proposto?

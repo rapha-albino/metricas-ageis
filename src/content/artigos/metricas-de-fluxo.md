@@ -1,9 +1,3 @@
----
-layout: "../../layouts/ArticleLayout.astro"
-title: "Métricas de fluxo: medir para enxergar o sistema, não para cobrar pessoas"
-description: "WIP, throughput e lead time como linguagem para melhorar o sistema de trabalho, não para vigiar pessoas."
----
-
 # Métricas de fluxo: medir para enxergar o sistema, não para cobrar pessoas
 
 Toda organização quer entregar mais rápido.
