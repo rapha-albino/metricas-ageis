@@ -1,0 +1,23 @@
+---
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import "../styles/global.css";
+interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+const courseUrl = "https://softwarezen.me/ecossistema/produto/metricas/";
+const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const schema = JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: title, description, inLanguage: "pt-BR", ...(canonicalUrl ? { mainEntityOfPage: canonicalUrl } : {}), author: { "@type": "Person", name: "Raphael Albino" }, isPartOf: { "@type": "Book", name: "Métricas Ágeis" } });
+---
+<!doctype html>
+<html lang="pt-BR"><head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><meta name="description" content={description} /><meta name="robots" content="index,follow" />
+  {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+  <meta property="og:type" content="article" /><meta property="og:locale" content="pt_BR" /><meta property="og:title" content={`${title} — Métricas Ágeis`} /><meta property="og:description" content={description} />
+  {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+  <meta name="twitter:card" content="summary" /><script type="application/ld+json" set:html={schema}></script><title>{title} — Métricas Ágeis</title>
+</head><body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a><SiteHeader />
+  <main id="conteudo" class="article" tabindex="-1"><a class="article-back" href="/#atualizacao">← Voltar ao livro</a><slot />
+    <section class="article-cta" aria-label="Convite ao curso"><p>O livro constrói o repertório. No curso, esse repertório vira prática guiada.</p><a class="button primary" href={courseUrl} target="_blank" rel="noopener noreferrer">Conhecer o curso <span aria-hidden="true">↗</span></a></section>
+  </main><SiteFooter />
+</body></html>

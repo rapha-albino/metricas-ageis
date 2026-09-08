@@ -1,0 +1,23 @@
+---
+interface Props { isHome?: boolean; }
+const { isHome = false } = Astro.props;
+const purchaseUrl = "https://www.casadocodigo.com.br/products/livro-metricas-ageis";
+const sections = [["problema", "O problema"], ["livro", "O livro"], ["atualizacao", "O que mudou"], ["leitores", "Quem leu"], ["curso", "O curso"]];
+---
+<header class="site-header">
+  <a class="brand" href="/">Métricas Ágeis</a>
+  <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true">☰</span><span>Menu</span></button>
+  <nav id="site-menu" class="site-nav" aria-label="Navegação principal">
+    {sections.map(([id, label]) => <a href={isHome ? `#${id}` : `/#${id}`} data-section={isHome ? id : undefined}>{label}</a>)}
+    <a class="header-buy" href={purchaseUrl} target="_blank" rel="noopener noreferrer">Adquirir <span aria-hidden="true">↗</span></a>
+  </nav>
+</header>
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const menu = document.getElementById("site-menu");
+  if (toggle && menu) {
+    const close = () => { menu.classList.remove("is-open"); toggle.setAttribute("aria-expanded", "false"); };
+    toggle.addEventListener("click", () => { const open = !menu.classList.contains("is-open"); menu.classList.toggle("is-open", open); toggle.setAttribute("aria-expanded", String(open)); });
+    menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", close));
+  }
+</script>
