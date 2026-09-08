@@ -1,0 +1,4 @@
+[submodule "content"]
+	path = content
+	url = git@github.com:rapha-albino/insights.git
+	branch = main

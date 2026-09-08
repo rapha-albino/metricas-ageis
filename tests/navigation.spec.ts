@@ -35,10 +35,12 @@ test("the privacy page explains analytics and lets visitors revisit consent", as
   await expect(page.getByRole("complementary", { name: "Preferências de privacidade" })).toBeVisible();
 });
 
-test("the flow article is available, calculates reading time, and returns to the book", async ({ page }) => {
-  await page.goto("/artigos/metricas-de-fluxo/");
-  await expect(page.getByRole("heading", { level: 1, name: /Métricas de fluxo/ })).toBeVisible();
-  await expect(page.locator(".article-meta")).toContainText(/min de leitura/);
+test("the three follow-on articles render with calculated reading time", async ({ page }) => {
+  for (const [path, heading] of [["/artigos/metricas-de-fluxo/", /Métricas de fluxo/], ["/artigos/indicadores-de-negocio/", /resultado do negócio/], ["/artigos/metricas-de-entrega-accelerate/", /Accelerate/]] as const) {
+    await page.goto(path);
+    await expect(page.getByRole("heading", { level: 1, name: heading })).toBeVisible();
+    await expect(page.locator(".article-meta")).toContainText(/min de leitura/);
+  }
   await page.getByRole("link", { name: "← Voltar ao livro" }).click();
   await expect(page).toHaveURL(/\/#atualizacao$/);
 });
@@ -62,7 +64,7 @@ test("skip link reaches content", async ({ page }) => {
   await expect(page.locator("main")).toBeFocused();
 });
 
-for (const path of ["/", "/artigos/metricas-de-fluxo/", "/privacidade/"]) {
+for (const path of ["/", "/artigos/metricas-de-fluxo/", "/artigos/indicadores-de-negocio/", "/artigos/metricas-de-entrega-accelerate/", "/privacidade/"]) {
   test(`${path} has no automatically detectable accessibility violations`, async ({ page }) => {
     await page.goto(path);
     const results = await new AxeBuilder({ page }).analyze();

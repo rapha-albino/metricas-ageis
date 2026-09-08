@@ -106,7 +106,7 @@ Os outros dois artigos previstos no mapa editorial não ganham rota ou card púb
 
 ### Livro
 
-A fonte editorial primária é a pasta deste projeto: capítulos, introdução, prefácio e imagens. O site não deve publicar um capítulo completo como amostra. O artigo de fluxo cumpre a função de apresentar a escrita e atualizar a conversa.
+A fonte editorial primária do livro é `../livro/`: capítulos, introdução, prefácio e imagens. Os artigos autorais vivem no repositório público [`rapha-albino/insights`](https://github.com/rapha-albino/insights), coleção `metricas/`, consumido pelo site como submódulo Git em `content/`. O site apenas os adapta e renderiza. O site não deve publicar um capítulo completo como amostra.
 
 Os blocos de conteúdo do livro devem apresentar, sem virar sumário detalhado:
 
@@ -214,8 +214,6 @@ site/
 │   └── sitemap-index.xml             # gerado no build
 ├── src/
 │   ├── components/
-│   ├── content/
-│   │   └── artigos/
 │   ├── layouts/
 │   ├── pages/
 │   │   ├── artigos/
@@ -229,7 +227,7 @@ site/
 └── README.md
 ```
 
-Os arquivos do livro permanecem fora de `site/` como fonte editorial. Cópias adaptadas para publicação ficam no projeto e devem passar por revisão própria.
+Os arquivos do livro em `../livro/` permanecem fora do site. Os artigos vivem no repositório autoral `insights`, conectado como o submódulo `content/`; mudanças de conteúdo acontecem lá e o site atualiza o ponteiro do submódulo quando estiver pronto para publicá-las.
 
 ## Ordem de construção
 

@@ -1,10 +1,10 @@
 ---
 import { marked } from "marked";
 import ArticleLayout from "../../layouts/ArticleLayout.astro";
-import source from "../../../content/metricas/metricas-de-fluxo.md?raw";
+import source from "../../../content/metricas/metricas-de-entrega-accelerate.md?raw";
 
-const title = "Métricas de fluxo: medir para enxergar o sistema, não para cobrar pessoas";
-const description = "WIP, throughput e lead time como linguagem para melhorar o sistema de trabalho, não para vigiar pessoas.";
+const title = "O que o Accelerate acrescenta às métricas de fluxo";
+const description = "Frequência de implantação, lead time for changes, tempo de restauração e taxa de falha de mudança em diálogo com o fluxo de trabalho.";
 const wordCount = (source.match(/[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*/gu) ?? []).length;
 const readingMinutes = Math.max(1, Math.ceil(wordCount / 220));
 const articleHtml = await marked.parse(source);
