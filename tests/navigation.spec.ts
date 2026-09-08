@@ -19,6 +19,7 @@ test("the commercial author section presents Raphael's credentials and course pa
   const author = page.locator("#autor");
   await expect(author.getByRole("heading", { name: /Eu trabalho/ })).toBeVisible();
   await expect(author).toContainText("18+");
+  await expect(author).toContainText("3 livros publicados");
   await expect(author.getByRole("link", { name: "Conhecer o curso" })).toHaveAttribute("href", "https://softwarezen.me/ecossistema/produto/metricas/");
 });
 
