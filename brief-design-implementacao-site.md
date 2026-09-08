@@ -52,7 +52,7 @@ Contrastes calculados: tinta sobre papel, cerca de 15:1; turquesa profundo sobre
 
 **Laranja fica de fora, de propósito.** A capa tem cartões laranja, mas laranja é a cor da Casa do Código e do cabeçalho da loja. Usar laranja como ênfase faria o site parecer uma página da editora, e não do livro. A cor de ação é o turquesa profundo.
 
-Mantida a regra anterior: não usar vermelho e verde como única forma de comunicar estado, nem depender de cor para explicar gráfico. Sem tema escuro no MVP, com os tokens já nascendo como variáveis CSS.
+Mantida a regra anterior: não usar vermelho e verde como única forma de comunicar estado, nem depender de cor para explicar gráfico. Os gráficos do livro já acertam nisso ao distinguir séries por tom de cinza e rótulo direto, nunca por matiz; qualquer redesenho deve preservar essa escolha, não substituí-la pela paleta de marca. Sem tema escuro no MVP, com os tokens já nascendo como variáveis CSS.
 
 ### Tipografia
 
@@ -129,7 +129,7 @@ Selecionar inicialmente três imagens originais, com função distinta:
 
 Cada gráfico precisa de título, texto alternativo significativo, legenda e uma explicação curta no HTML. A imagem não pode ser a única portadora de informação essencial. A seleção final depende de revisão de legibilidade em tela pequena.
 
-**Recomendação: redesenhar os três em SVG, em vez de publicar as imagens originais.** As imagens do livro são capturas de 2017, em escala de cinza, com setas e textos desenhados por cima e resolução baixa para tela. Publicadas como estão, envelhecem a página e contradizem justamente o argumento de que a prática continuou depois do livro. Redesenhar em SVG inline, com os dados exatos dos exemplos do livro, resolve legibilidade em celular, aplica a paleta, dispensa biblioteca de gráficos e permite texto acessível dentro do próprio SVG. As imagens originais permanecem como fonte de conferência, não como material publicado. É o item de maior esforço do MVP e precisa de aprovação.
+**Recomendação revista: redesenhar os três em SVG, preservando a escala de cinza — não a paleta de marca.** As imagens do livro são capturas de 2017 com resolução baixa para tela, mas sua escolha de cor está certa: cada gráfico distingue séries e valores por tom de cinza e por rótulo escrito diretamente sobre o dado, nunca por matiz. É o padrão indicado para leitura por pessoas com daltonismo, que dependem de contraste de valor e não de diferença de cor — trocar isso por turquesa, turquesa-profundo e limão seria uma regressão de acessibilidade disfarçada de modernização. Redesenhar em SVG inline resolve a resolução e a legibilidade em celular sem abrir mão dessa vantagem: usar `--tinta`, `--tinta-suave` e `--nevoa` para preencher e traçar as séries, do jeito que o livro já faz, com os mesmos rótulos diretos sobre o dado. O `--turquesa` fica reservado a um único destaque não essencial por gráfico, se fizer sentido, e nunca à diferenciação entre duas ou mais séries. As imagens originais permanecem como fonte de conferência, não como material publicado. É o item de maior esforço do MVP e ainda precisa de aprovação.
 
 ### Artigo inicial
 
