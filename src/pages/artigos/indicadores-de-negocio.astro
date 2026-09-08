@@ -3,7 +3,7 @@ import { marked } from "marked";
 import ArticleLayout from "../../layouts/ArticleLayout.astro";
 import source from "../../../content/metricas/indicadores-de-negocio.md?raw";
 
-const title = "Do fluxo do time ao resultado do negócio";
+const title = "Do fluxo da equipe ao resultado do negócio";
 const description = "Como conectar métricas de fluxo, comportamento e resultado sem transformar entrega em prova automática de valor.";
 const wordCount = (source.match(/[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*/gu) ?? []).length;
 const readingMinutes = Math.max(1, Math.ceil(wordCount / 220));

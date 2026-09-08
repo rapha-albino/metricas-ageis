@@ -17,7 +17,7 @@ test("navigation reaches every section", async ({ page }) => {
 test("the commercial author section presents Raphael's credentials and course path", async ({ page }) => {
   await page.goto("/");
   const author = page.locator("#autor");
-  await expect(author.getByRole("heading", { name: /Raphael Albino trabalha/ })).toBeVisible();
+  await expect(author.getByRole("heading", { name: /Eu trabalho/ })).toBeVisible();
   await expect(author).toContainText("18+");
   await expect(author.getByRole("link", { name: "Conhecer o curso" })).toHaveAttribute("href", "https://softwarezen.me/ecossistema/produto/metricas/");
 });
@@ -47,7 +47,7 @@ test("analytics loads only after the visitor accepts it", async ({ page }) => {
 
 test("the privacy page explains analytics and lets visitors revisit consent", async ({ page }) => {
   await page.goto("/privacidade/");
-  await expect(page.getByRole("heading", { name: "Informações sobre dados e navegação" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Dados de navegação, sem enrolação." })).toBeVisible();
   await page.getByRole("button", { name: "Rever preferências de métricas" }).click();
   await expect(page.getByRole("complementary", { name: "Preferências de privacidade" })).toBeVisible();
 });
