@@ -90,6 +90,7 @@ Os outros dois artigos previstos no mapa editorial não ganham rota ou card púb
 | `PrincipleCallout` | Afirma de modo inequívoco que métricas servem ao processo, não à cobrança de pessoas. |
 | `WhatChangedSection` | Conecta os fundamentos de 2017 a métricas de entrega de engenharia, indicadores de negócio e Dynamic Flow; direciona ao artigo existente. |
 | `ReaderVoices` | Quatro leituras curadas, atribuídas e verificadas, com uma ressalva crítica incluída. |
+| `AuthorSection` | Apresenta Raphael como autor, consultor e professor, com credenciais e conexão direta com o curso. |
 | `CourseSection` | Mostra a progressão do livro ao curso e seus quatro movimentos, com CTA prioritário. |
 | `PurchaseSection` | Reúne formatos de compra do livro sem competir visualmente com o curso. |
 | `Footer` | Créditos, links externos, privacidade e contato/identidade autoral, se definidos. |

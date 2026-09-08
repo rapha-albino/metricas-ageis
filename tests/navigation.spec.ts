@@ -6,12 +6,20 @@ const courseUrl = "https://softwarezen.me/ecossistema/produto/metricas/";
 
 test("navigation reaches every section", async ({ page }) => {
   await page.goto("/");
-  for (const [name, id] of [["O problema", "problema"], ["O livro", "livro"], ["O que mudou", "atualizacao"], ["Quem leu", "leitores"], ["O curso", "curso"]]) {
+  for (const [name, id] of [["O problema", "problema"], ["O livro", "livro"], ["O que mudou", "atualizacao"], ["Quem leu", "leitores"], ["Autor", "autor"], ["O curso", "curso"]]) {
     await page.getByRole("link", { name, exact: true }).click();
     await expect(page).toHaveURL(new RegExp(`#${id}$`));
     await expect(page.locator(`#${id}`)).toBeVisible();
     await expect(page.getByRole("link", { name, exact: true })).toHaveAttribute("aria-current", "location");
   }
+});
+
+test("the commercial author section presents Raphael's credentials and course path", async ({ page }) => {
+  await page.goto("/");
+  const author = page.locator("#autor");
+  await expect(author.getByRole("heading", { name: /Raphael Albino trabalha/ })).toBeVisible();
+  await expect(author).toContainText("18+");
+  await expect(author.getByRole("link", { name: "Conhecer o curso" })).toHaveAttribute("href", "https://softwarezen.me/ecossistema/produto/metricas/");
 });
 
 test("reader voices present attributed application and critical readings", async ({ page }) => {
